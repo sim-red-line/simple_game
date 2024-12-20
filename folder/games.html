@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #ffffff;
+            border-right: 1px solid #ddd;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            padding: 15px 20px;
+            font-size: 18px;
+        }
+        .sidebar a:hover {
+            background-color: #f0f0f0;
+        }
+        .sidebar img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            padding: 10px;
+            font-size: 16px;
+            width: calc(100% - 50px);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .game-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .game-card a {
+            display: flex;
+            flex-direction: column;  /* 아이콘을 위에, 글자를 아래로 배치 */
+            align-items: center;     /* 아이콘과 글자가 중앙 정렬 */
+            text-decoration: none;   /* 밑줄 없애기 */
+            color: #333;             /* 글자 색을 검정색으로 */
+            padding: 15px 20px;
+            font-size: 18px;
+        }
+
+        .game-card a:hover {
+            background-color: #f0f0f0;
+            color: #000;             /* 호버 시 글자 색을 검정색으로 */
+        }
+
+        .game-card img {
+            margin-bottom: 10px;     /* 아이콘과 글자 사이에 간격을 주기 */
+            width: 60px;             /* 아이콘 크기 */
+            height: 60px;
+        }
+
+        .game-card .title {
+            font-size: 16px;
+            margin-top: 10px;        /* 텍스트 위에 여백 추가 */
+        }
+        .game-card .update-info {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="games.html" class="active">
+            <img src="games.png" alt="Games"> Games
+        </a>
+
+        <a href="controller.html">
+            <img src="game.png" alt="Controller"> Controller
+        </a>
+        <a href="developer.html">
+            <img src="dev.png" alt="Updates"> developer
+        </a>
+    </div>
+    <div class="content">
+        <div class="header">게임</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search Games">
+        </div>
+        <div class="games-grid">
+            <!-- Game Card 1 (with link to Tetris) -->
+            <div class="game-card">
+                <a href="snake.html">
+                    <img src="snake.png" alt="Tetris Game">
+                    <div class="title">snake game</div>
+                </a>
+            </div>
+            
+            <!-- Game Card 2 (with link to another game, e.g., Pac-Man) -->
+            <div class="game-card">
+                <a href="pacman.html">
+                    <img src="packman.png" alt="Pac-Man Game">
+                    <div class="title">Pac-Man</div>
+                </a>
+            </div>
+            
+            <!-- Game Card 3 (with link to another game, e.g., Snake) -->
+            <div class="game-card">
+                <a href="dino.html">
+                    <img src="dino.png" alt="T-rex game">
+                    <div class="title">T-rex Game</div>
+                </a>
+            </div>
+            
+            <!-- Add more game cards as needed, each with a unique link -->
+        </div>
+    </div>    
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web UI</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #ffffff;
+            border-right: 1px solid #ddd;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            padding: 15px 20px;
+            font-size: 18px;
+        }
+        .sidebar a:hover {
+            background-color: #f0f0f0;
+        }
+        .sidebar img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .project-card img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+        .project-card .title {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .project-card .update-info {
+            font-size: 14px;
+            color: #666;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .search-bar input {
+            padding: 10px;
+            font-size: 16px;
+            width: calc(100% - 50px);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .search-bar img {
+            width: 24px;
+            height: 24px;
+            margin-left: 10px;
+        }
+        /* New styles for face and introduction */
+        .developer-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .developer-info img {
+            width: 150px;  /* Larger width */
+            height: 150px; /* Larger height */
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .developer-info .intro {
+            font-size: 16px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="games.html" class="active">
+            <img src="games.png" alt="Games"> Games
+        </a>
+        <a href="controller.html">
+            <img src="game.png" alt="Controller"> Controller
+        </a>
+        <a href="developer.html">
+            <img src="dev.png" alt="Updates"> developer
+        </a>
+    </div>
+    <div class="content">
+        <!-- Developer Screen -->
+        <div id="developer.png">
+            <div class="header">Developer</div>
+            
+            <!-- Developer Info Section -->
+            <div class="developer-info">
+                <img src="face.png" alt="Developer Face"> <!-- Add a developer's face image -->
+                <div class="intro">
+                    <p>Hello, I'm sean. I specialize in web development and enjoy creating user-friendly applications. My goal is to build intuitive, interactive websites that enhance user experience.</p>
+                </div>
+            </div>
+                <!-- Add more project cards as needed -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

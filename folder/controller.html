@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Joystick</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #ffffff;
+            border-right: 1px solid #ddd;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            padding: 15px 20px;
+            font-size: 18px;
+        }
+        .sidebar a:hover {
+            background-color: #f0f0f0;
+        }
+        .sidebar img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .content {
+            margin-left: 200px;
+            padding: 20px;
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #a8a8a8;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        #joystickData {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="games.html" class="active">
+            <img src="games.png" alt="Games"> Games
+        </a>
+        <a href="controller.html">
+            <img src="game.png" alt="Controller"> Controller
+        </a>
+        <a href="developer.html">
+            <img src="dev.png" alt="Updates"> developer
+        </a>
+    </div>
+
+    <div class="content">
+        <div class="header">Arduino Joystick Data</div>
+        <p id="joystickData">Waiting for data...</p>
+        <button id="connectButton" class="button">Connect to Arduino</button>
+    </div>
+
+    <script>
+        const connectButton = document.getElementById("connectButton");
+        const joystickData = document.getElementById("joystickData");
+
+        let port;
+        let reader;
+
+        connectButton.addEventListener("click", async () => {
+            try {
+                port = await navigator.serial.requestPort(); // 포트 선택
+                await port.open({ baudRate: 9600 }); // 시리얼 속도 맞추기
+
+                const decoder = new TextDecoderStream();
+                const inputStream = port.readable.pipeThrough(decoder);
+                reader = inputStream.getReader();
+
+                joystickData.innerText = "Connected. Reading data...";
+                readData();
+            } catch (error) {
+                console.error("Error:", error);
+                joystickData.innerText = "Connection failed.";
+            }
+        });
+
+        async function readData() {
+            while (port.readable) {
+                try {
+                    const { value, done } = await reader.read();
+                    if (done) break; // 스트림 끝
+                    joystickData.innerText = value; // HTML에 데이터 표시
+                } catch (error) {
+                    console.error("Read error:", error);
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

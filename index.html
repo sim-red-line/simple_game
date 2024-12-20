@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #user-info {
+            margin-top: 20px;
+        }
+        #start-btn {
+            display: none; /* 버튼을 기본적으로 숨김 */
+        }
+    </style>
+
+    <!-- Include Google Platform Library -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function handleCredentialResponse(response) {
+            const data = JSON.parse(atob(response.credential.split('.')[1]));
+            const email = data.email;
+            const fullName = data.name;
+            const profilePic = data.picture;
+
+            // 로그인 정보 표시
+            document.getElementById('user-info').innerHTML = `
+                <p>Welcome, ${email}</p>
+                <img src="${profilePic}" alt="Profile Picture" style="border-radius: 50%; width: 100px; height: 100px;">
+            `;
+
+            // 로그인 완료 후 버튼 표시
+            document.getElementById('start-btn').style.display = "inline-block";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <!-- Google Sign-In -->
+        <div id="g_id_onload"
+            data-client_id="270076512941-fgu4hbtpqgffk3kkq7b924fgm653c692.apps.googleusercontent.com"
+            data-callback="handleCredentialResponse">
+        </div>
+        <div class="g_id_signin" data-type="standard"></div>
+
+        <!-- 로그인 후 표시될 정보 -->
+        <div id="user-info"></div>
+
+        <!-- 로그인 후 표시될 버튼 -->
+        <a href="folder/games.html">
+            <button id="start-btn">Press to start</button>
+        </a>
+    </div>
+</body>
+</html>
